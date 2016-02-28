@@ -311,7 +311,13 @@ namespace ukb {
 		o << m_id << " ";
 		if(!glVars::output::allranks) cw_aw_print_best(o, m_syns, m_ranks);
 		else cw_aw_print_all(o, m_syns, m_ranks);
-		o << " !! " << m_w << "\n";
+                // if we want single line output, use the separator string instead
+                // of the newline character!
+                if(glVars::output::result_sep == "") {
+		  o << " !! " << m_w << "\n";
+                } else {
+                  o << " !! " << m_w << glVars::output::result_sep;  
+                }
 		return o;
 	}
 

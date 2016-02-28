@@ -77,6 +77,7 @@ namespace ukb {
 			bool monosemous = true;
 			bool ties = false;
 			bool norm_ranks = true;
+                        std::string result_sep = "";
 		}
 
 		RankAlg rAlg = pageRank;

@@ -212,6 +212,10 @@ void dispatch_run(istream & is, ostream & os) {
 	while (cs.read_aw(is, l_n)) {
 		dispatch_run_cs(cs);
 		cs.print_csent(os);
+                if(glVars::output::result_sep != "") {
+                    os << "\n";
+                }
+                os.flush();
 		cs = CSentence();
 	}
 }
@@ -322,6 +326,7 @@ int main(int argc, char *argv[]) {
 		("no-monosemous", "Don't output anything for monosemous words.")
 		("ties", "Output also in case of ties.")
 		("rank_nonorm", "Do not normalize the ranks of target words.")
+                ("result_sep", value<string>(), "Output single line only, separated outputs by this string.")
 		;
 
 	options_description po_visible(desc_header);
@@ -547,6 +552,10 @@ int main(int argc, char *argv[]) {
 		if (vm.count("altdict")) {
 			alternative_dict_fname = vm["altdict"].as<string>();
 		}
+                
+                if(vm.count("result_sep")) {
+                    glVars::output::result_sep = vm["result_sep"].as<string>();
+                }
 
 	}
 	catch(std::exception& e) {

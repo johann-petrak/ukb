@@ -94,6 +94,7 @@ namespace ukb {
 			extern bool monosemous;     // print monosemous words
 			extern bool ties;           // print also if ties
 			extern bool norm_ranks;     // normalize relative ranks of a CWord
+                        extern std::string result_sep;   // if set to non-empty output single line with results separated by this
 		}
 
 		namespace kb {
